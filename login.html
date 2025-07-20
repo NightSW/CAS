@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Login de Agente - Central de Operações Secretas{% endblock %}
+
+{% block content %}
+<div class="header">
+    <div class="classified-stamp">ULTRA SECRETO</div>
+    <div class="logo">AUTENTICAÇÃO DE AGENTE</div>
+    <div class="subtitle">Insira suas credenciais de acesso</div>
+</div>
+
+<div class="card">
+    <h2>🔐 Login Seguro</h2>
+    
+    <form method="POST" id="loginForm">
+        <div class="form-group">
+            <label for="username">👤 Nome de Agente:</label>
+            <input type="text" id="username" name="username" required placeholder="Ex: Agente Falcão">
+        </div>
+        
+        <div class="form-group">
+            <label for="password">🔑 Código de Acesso:</label>
+            <input type="password" id="password" name="password" required placeholder="Senha ultra secreta">
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <button type="submit" class="btn">🚀 INICIAR MISSÃO</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary" style="margin-left: 10px;">↩️ VOLTAR</a>
+        </div>
+    </form>
+</div>
+
+<div class="card">
+    <h2>🆔 Agentes de Demonstração</h2>
+    <p style="margin-bottom: 20px;">Para testar o sistema, use uma das credenciais abaixo:</p>
+    
+    <div class="agent-info">
+        <div class="info-card">
+            <h3>🦅 Agente Falcão</h3>
+            <p><strong>Usuário:</strong> agente_falcao</p>
+            <p><strong>Senha:</strong> falcao123</p>
+        </div>
+        <div class="info-card">
+            <h3>🌙 Agente Sombra</h3>
+            <p><strong>Usuário:</strong> agente_sombra</p>
+            <p><strong>Senha:</strong> sombra456</p>
+        </div>
+        <div class="info-card">
+            <h3>⚡ Agente Raio</h3>
+            <p><strong>Usuário:</strong> agente_raio</p>
+            <p><strong>Senha:</strong> raio789</p>
+        </div>
+        <div class="info-card">
+            <h3>🔥 Agente Fênix</h3>
+            <p><strong>Usuário:</strong> agente_fenix</p>
+            <p><strong>Senha:</strong> fenix321</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>⚠️ Protocolo de Segurança</h2>
+    <div style="background: rgba(52, 152, 219, 0.1); padding: 20px; border-radius: 5px; border-left: 5px solid #3498db;">
+        <ul style="list-style: none; padding: 0;">
+            <li style="margin: 10px 0;">🔸 Nunca compartilhe suas credenciais</li>
+            <li style="margin: 10px 0;">🔸 Sempre faça logout ao terminar</li>
+            <li style="margin: 10px 0;">🔸 Reporte atividades suspeitas imediatamente</li>
+            <li style="margin: 10px 0;">🔸 Use apenas dispositivos seguros</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Efeito de digitação no formulário
+    document.addEventListener('DOMContentLoaded', function() {
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.boxShadow = '0 0 20px rgba(52, 152, 219, 0.5)';
+            });
+            input.addEventListener('blur', function() {
+                this.style.boxShadow = 'none';
+            });
+        });
+        
+        // Validação do formulário
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (!username || !password) {
+                e.preventDefault();
+                alert('⚠️ Por favor, preencha todos os campos!');
+            }
+        });
+    });
+</script>
+{% endblock %}
+

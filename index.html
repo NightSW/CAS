@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Central de Operações Secretas - Acesso Restrito{% endblock %}
+
+{% block content %}
+<div class="header">
+    <div class="classified-stamp">ULTRA SECRETO</div>
+    <div class="logo">CENTRAL DE OPERAÇÕES</div>
+    <div class="subtitle">Acesso Apenas para Agentes Autorizados</div>
+</div>
+
+<div class="card">
+    <h2>🔒 Área Restrita</h2>
+    <p style="text-align: center; margin-bottom: 30px; font-size: 1.1rem; line-height: 1.6;">
+        Esta é uma área de acesso restrito para agentes credenciados.<br>
+        Se você é um agente autorizado, faça seu login para acessar o centro de operações.
+    </p>
+    
+    <div style="text-align: center;">
+        <a href="{{ url_for('login') }}" class="btn">🔑 ACESSO DE AGENTE</a>
+    </div>
+</div>
+
+<div class="card">
+    <h2>⚠️ Aviso de Segurança</h2>
+    <div style="background: rgba(231, 76, 60, 0.1); padding: 20px; border-radius: 5px; border-left: 5px solid #e74c3c;">
+        <p><strong>ATENÇÃO:</strong> Este sistema é monitorado 24/7. Tentativas de acesso não autorizado serão registradas e reportadas às autoridades competentes.</p>
+        <br>
+        <p>Apenas agentes com credenciais válidas podem prosseguir. Se você não possui autorização, saia imediatamente desta página.</p>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📋 Informações do Sistema</h2>
+    <div class="agent-info">
+        <div class="info-card">
+            <h3>🛡️ Nível de Segurança</h3>
+            <p>MÁXIMO - Classificação Ultra Secreta</p>
+        </div>
+        <div class="info-card">
+            <h3>🌐 Status da Rede</h3>
+            <p>OPERACIONAL - Conexão Segura Ativa</p>
+        </div>
+        <div class="info-card">
+            <h3>⏰ Última Atualização</h3>
+            <p id="current-time">Carregando...</p>
+        </div>
+        <div class="info-card">
+            <h3>👥 Agentes Online</h3>
+            <p>Informação disponível após login</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Atualizar horário em tempo real
+    function updateTime() {
+        const now = new Date();
+        const timeString = now.toLocaleString('pt-BR', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        document.getElementById('current-time').textContent = timeString;
+    }
+    
+    updateTime();
+    setInterval(updateTime, 1000);
+</script>
+{% endblock %}
+
